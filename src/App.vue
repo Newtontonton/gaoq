@@ -25,9 +25,15 @@ const getDataInfo = async ()=>{
   managerInfo.value = dataInfo.value.map(value=>{
     return {name:value.manager}
   })
+
   managerInfo.value = managerInfoResult(managerInfo.value);
 };
-
+/**
+ * TO DO
+ * 由于mock数据manager.js中用到了顶级await。多次引入manager.js可能会有问题。
+ * 所以此处managerInfo拿不到600名员工名字，仅是对1000条数据的manager进行了遍历，去重
+ * 如果将mock模拟数据代码都放在APP.vue文件内或许可以一试。
+ */
 const managerInfoResult = (ARR) => {
   for (let i = 0; i < ARR.length; i++) {
     for (let j = i + 1; j < ARR.length; j++) {
